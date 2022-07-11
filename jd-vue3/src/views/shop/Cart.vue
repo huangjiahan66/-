@@ -1,7 +1,11 @@
 <template>
-  <div class="mask" v-if="showCart" @click="handleCartShowChange"></div>
+  <div
+    class="mask"
+    v-if="showCart && total > 0"
+    @click="handleCartShowChange"
+  ></div>
   <div class="cart">
-    <div class="product" v-if="showCart">
+    <div class="product" v-if="showCart && total > 0">
       <div class="product__header">
         <div class="product__header__all">
           <span
@@ -69,7 +73,9 @@
         总计: <span class="check__info__price">&yen;{{ price }}</span>
       </div>
       <div class="check__btn">
-        <router-link :to="{ name: 'Home' }"> 去结算 </router-link>
+        <router-link :to="{ path: `/orderConfirmation/${shopId}` }">
+          去结算
+        </router-link>
       </div>
     </div>
   </div>
@@ -86,7 +92,7 @@ const useCartEffect = (shopId) => {
   const store = useStore();
   const cartList = store.state.cartList;
   const total = computed(() => {
-    const productList = cartList[shopId];
+    const productList = cartList[shopId]?.productList;
     let count = 0;
     if (productList) {
       for (let i in productList) {
@@ -98,7 +104,7 @@ const useCartEffect = (shopId) => {
   });
 
   const price = computed(() => {
-    const productList = cartList[shopId];
+    const productList = cartList[shopId]?.productList;
     let count = 0;
     if (productList) {
       for (let i in productList) {
@@ -112,7 +118,7 @@ const useCartEffect = (shopId) => {
   });
   // 是否全选
   const allChecked = computed(() => {
-    const productList = cartList[shopId];
+    const productList = cartList[shopId]?.productList;
     let result = true;
     if (productList) {
       for (let i in productList) {
@@ -126,7 +132,7 @@ const useCartEffect = (shopId) => {
   });
 
   const productList = computed(() => {
-    const productList = cartList[shopId] || [];
+    const productList = cartList[shopId]?.productList || [];
     return productList;
   });
 

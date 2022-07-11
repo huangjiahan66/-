@@ -4,10 +4,12 @@
       <div class="iconfont icon-shouye1"></div>
       <div class="docker__title">首页</div>
     </div>
-    <div class="docker__item">
+
+    <div class="docker__item" @click="handleGotoCartList">
       <div class="iconfont icon-gouwuche1"></div>
       <div class="docker__title">购物车</div>
     </div>
+
     <div class="docker__item">
       <div class="iconfont icon-dingdan"></div>
       <div class="docker__title">订单</div>
@@ -20,12 +22,25 @@
 </template>
 
 <script>
-export default {};
+import { useRouter } from "vue-router";
+export default {
+  setup() {
+    const router = useRouter();
+    const handleGotoCartList = () => {
+      console.log("111");
+      router.push("/cartlist");
+    };
+    return {
+      handleGotoCartList,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
 .docker {
   display: flex;
+
   position: absolute;
   left: 0;
   bottom: 0;
@@ -39,6 +54,10 @@ export default {};
   .docker__item {
     flex: 1;
     text-align: center;
+    a {
+      color: #1fa4fc;
+      text-decoration: none;
+    }
     .iconfont {
       margin: 0.07rem 0 0.02rem 0;
       font-size: 0.2rem;

@@ -4,6 +4,8 @@ import Login from "../views/login/Login.vue";
 import Home from "../views/home/home.vue";
 import Register from "../views/register/Register.vue";
 import Shop from "../views/shop/Shop.vue";
+import CartList from "../views/cartList/CartList.vue";
+import OrderConfirmation from "../views/orderConfirmation/orderConfirmation.vue";
 const routes = [
   {
     path: "/",
@@ -15,6 +17,7 @@ const routes = [
     name: "Shop",
     component: Shop,
   },
+
   {
     path: "/register",
     name: "Register",
@@ -34,6 +37,16 @@ const routes = [
       const isLogin = localStorage.isLogin;
       isLogin ? next({ name: "Home" }) : next();
     },
+  },
+  {
+    path: "/cartlist",
+    name: "CartList",
+    component: CartList,
+  },
+  {
+    path: "/orderConfirmation/:id",
+    name: "OrderConfirmation",
+    component: OrderConfirmation,
   },
 ];
 
