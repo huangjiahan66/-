@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../style/valriables.scss";
 @import "../../style/minxins.scss";
 .wrapper {
