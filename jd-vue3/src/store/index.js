@@ -22,7 +22,11 @@ const setLocalStorage = (state) => {
 //  }
 // },
 const getLocalStorage = () => {
-  return JSON.parse(localStorage.cartList || {});
+  try {
+    return JSON.parse(localStorage.cartList || {});
+  } catch (error) {
+    return {};
+  }
 };
 export default Vuex.createStore({
   state: {
@@ -92,6 +96,9 @@ export default Vuex.createStore({
       };
       shopInfo.shopName = shopName;
       state.cartList[shopId] = shopInfo;
+    },
+    clearCartData(state, shopId) {
+      state.cartList[shopId].productList = {};
     },
   },
 });

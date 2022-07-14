@@ -6,6 +6,7 @@ import Register from "../views/register/Register.vue";
 import Shop from "../views/shop/Shop.vue";
 import CartList from "../views/cartList/CartList.vue";
 import OrderConfirmation from "../views/orderConfirmation/orderConfirmation.vue";
+import OrderList from "../views/orderList/OrderList.vue";
 const routes = [
   {
     path: "/",
@@ -47,6 +48,11 @@ const routes = [
     path: "/orderConfirmation/:id",
     name: "OrderConfirmation",
     component: OrderConfirmation,
+  },
+  {
+    path: "/orderlist",
+    name: "orderlist",
+    component: OrderList,
   },
 ];
 
