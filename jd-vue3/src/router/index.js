@@ -7,6 +7,7 @@ import Shop from "../views/shop/Shop.vue";
 import CartList from "../views/cartList/CartList.vue";
 import OrderConfirmation from "../views/orderConfirmation/orderConfirmation.vue";
 import OrderList from "../views/orderList/OrderList.vue";
+import Search from "../views/search/Search.vue";
 const routes = [
   {
     path: "/",
@@ -53,6 +54,11 @@ const routes = [
     path: "/orderlist",
     name: "orderlist",
     component: OrderList,
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: Search,
   },
 ];
 
