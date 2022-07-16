@@ -7,10 +7,13 @@
       <span class="iconfont icon-lingdang"></span>
     </div>
 
-    <div class="search">
-      <span class="iconfont icon-search"></span>
-      <span class="search__text">山姆会员优惠商品</span>
-    </div>
+    <router-link to="search">
+      <div class="search">
+        <span class="iconfont icon-search"></span>
+        <span class="search__text">山姆会员优惠商品</span>
+      </div>
+    </router-link>
+
     <!-- banner -->
     <div class="banner">
       <img
