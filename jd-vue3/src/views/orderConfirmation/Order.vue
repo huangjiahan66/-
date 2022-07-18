@@ -63,6 +63,9 @@ const useMakeOrderEffect = (shopId, shopName, productList) => {
         products,
       });
       if (res?.errno === 0) {
+        const cartList = JSON.parse(localStorage.cartList || "{}");
+        delete cartList[shopId];
+        localStorage.cartList = JSON.stringify(cartList);
         store.commit("clearCartData", shopId);
         router.push({ name: "orderlist" });
       }

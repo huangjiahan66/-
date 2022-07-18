@@ -17,6 +17,21 @@
       <p class="shop__content__highlight">
         {{ item.slogan }}
       </p>
+
+      <div v-if="item.products" class="shop__products">
+        <div
+          v-for="product in item.products"
+          :key="product.name"
+          class="shop__product"
+        >
+          <img :src="product.imgUrl" class="shop__product__img" />
+          <p class="shop__product__title">{{ product.name }}</p>
+          <p class="shop__product__price">
+            <span class="price__yen">&yen;{{ product.price }}</span>
+            <span class="origin">&yen;{{ product.oldPrice }}</span>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +45,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/valriables.scss";
+@import "../style/minxins.scss";
 .shop {
   display: flex;
   padding-top: 0.12rem;
@@ -63,6 +79,43 @@ export default {
       line-height: 0.18rem;
       font-size: 0.13rem;
       color: $hightlight-fontColor;
+    }
+  }
+
+  &__products {
+    overflow: hidden;
+    margin: 0.08rem 0.07rem 0 -0.18rem;
+  }
+  &__product {
+    width: 33.33%;
+    box-sizing: border-box;
+    padding-left: 0.18rem;
+    float: left;
+    &__img {
+      width: 100%;
+    }
+    &__title {
+      margin: 0.04rem 0 0 0;
+      font-size: 0.12rem;
+      color: #333;
+      line-height: 0.17rem;
+      @include ellisps;
+    }
+    &__price {
+      margin: 0.02rem 0 0 0;
+      line-height: 0.2rem;
+      color: #e93b3b;
+      font-size: 0.14rem;
+      .price__yen {
+        font-size: 0.12rem;
+      }
+      .origin {
+        font-size: 0.12rem;
+        color: #666;
+        padding-left: 0.1rem;
+        @include ellisps;
+        text-decoration: line-through;
+      }
     }
   }
 }

@@ -33,7 +33,6 @@ export default {
   setup() {
     const { nearbyList, getNeatbyList } = userNearbyListEffect();
     getNeatbyList();
-
     return { nearbyList };
   },
 };

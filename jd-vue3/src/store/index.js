@@ -98,7 +98,7 @@ export default Vuex.createStore({
       state.cartList[shopId] = shopInfo;
     },
     clearCartData(state, shopId) {
-      state.cartList[shopId].productList = {};
+      delete state.cartList[shopId];
     },
   },
 });
