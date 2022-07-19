@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
 import Login from "../views/login/Login.vue";
-import Home from "../views/home/home.vue";
+// import Home from "../views/home/home.vue";
 import Register from "../views/register/Register.vue";
 import Shop from "../views/shop/Shop.vue";
 import CartList from "../views/cartList/CartList.vue";
@@ -9,11 +9,12 @@ import OrderConfirmation from "../views/orderConfirmation/orderConfirmation.vue"
 import OrderList from "../views/orderList/OrderList.vue";
 import Search from "../views/search/Search.vue";
 import SearchList from "../views/searchList/SearchList.vue";
+import Address from "../views/address/Address.vue";
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("../views/home/home.vue"),
   },
   {
     path: "/shop/:id",
@@ -65,6 +66,16 @@ const routes = [
     path: "/searchList",
     name: "searchList",
     component: SearchList,
+  },
+  {
+    path: "/address",
+    name: "Address",
+    component: Address,
+  },
+  {
+    path: "/addressEdit",
+    name: "addressEdit",
+    component: () => import("../views/addressEdit/addressEdit.vue"),
   },
 ];
 

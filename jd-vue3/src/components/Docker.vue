@@ -25,7 +25,7 @@ export default {
       { icon: "&#xe62e;", text: "首页", to: { name: "Home" } },
       { icon: "&#xe63f;", text: "购物车", to: { name: "CartList" } },
       { icon: "&#xe897;", text: "订单", to: { name: "orderlist" } },
-      { icon: "&#xe8a0;", text: "我的", to: { name: "Home" } },
+      { icon: "&#xe8a0;", text: "我的", to: { name: "Address" } },
     ];
 
     return {
