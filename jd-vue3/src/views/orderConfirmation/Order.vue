@@ -3,7 +3,13 @@
     <div class="order__price">
       实付金额<b>{{ price }}</b>
     </div>
-    <div class="order__btn" @click="handleSubmitClick(true)">提交订单</div>
+    <div
+      class="order__btn"
+      @click="handleSubmitClick(true)"
+      v-show="showSubmitBtn"
+    >
+      提交订单
+    </div>
   </div>
 
   <div class="mask" v-show="showConfirm" @click="handleSubmitClick(false)">
@@ -45,7 +51,7 @@ const useMaskShowEffect = () => {
   return { showConfirm, handleSubmitClick };
 };
 
-const useMakeOrderEffect = (shopId, shopName, productList) => {
+const useMakeOrderEffect = (shopId, shopName, productList, addressId) => {
   const store = useStore();
   const router = useRouter();
   const handleConfirmOrder = async (isCanceled) => {
@@ -56,7 +62,7 @@ const useMakeOrderEffect = (shopId, shopName, productList) => {
     }
     try {
       const res = await post("/api/order", {
-        addressId: 1,
+        addressId,
         shopId,
         shopName: shopName.value,
         isCanceled,
@@ -86,9 +92,16 @@ export default {
     const { handleConfirmOrder } = useMakeOrderEffect(
       shopId,
       shopName,
-      productList
+      productList,
+      route.query.addressId
     );
-    return { price, handleConfirmOrder, showConfirm, handleSubmitClick };
+    return {
+      price,
+      handleConfirmOrder,
+      showConfirm,
+      handleSubmitClick,
+      showSubmitBtn: !!route.query.addressId, //如果url有id
+    };
   },
 };
 </script>

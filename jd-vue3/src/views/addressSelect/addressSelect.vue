@@ -1,10 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="title">
-      我的地址<span class="title__create"
-        ><router-link to="/addressEdit">新建</router-link></span
-      >
-    </div>
+    <div class="title">地址选择<span class="title__create"></span></div>
     <div class="address">
       <div
         class="address__item"
@@ -19,20 +15,17 @@
         <p class="address__item__address">
           {{ address.city }} {{ address.department }} {{ address.houseNumber }}
         </p>
-        <div class="iconfont"><van-icon name="arrow-left" /></div>
       </div>
 
       <div v-if="addressList.length === 0" class="empty">暂无地址信息</div>
     </div>
   </div>
-
-  <Docker :currentIndex="3" />
 </template>
 
 <script>
 import { get } from "../../utils/request";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 const useAddressListEffect = () => {
   const addressList = ref([]);
   const getAddressList = async () => {
@@ -43,18 +36,18 @@ const useAddressListEffect = () => {
   };
   return { addressList, getAddressList };
 };
-import Docker from "../../components/Docker.vue";
+
 export default {
   name: "Address",
-  components: {
-    Docker,
-  },
+
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const { addressList, getAddressList } = useAddressListEffect();
     getAddressList();
     const handleAddressClick = (id) => {
-      router.push(`/addressEdit?id=${id}`);
+      const path = route.query.path;
+      router.push(`${path}?addressId=${id}`);
       // console.log(id);
     };
     return { addressList, handleAddressClick };
@@ -70,7 +63,7 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0.5rem;
+  bottom: 0rem;
   right: 0;
   background: #eee;
 }
@@ -81,14 +74,6 @@ export default {
   font-size: 0.16rem;
   color: $content-fontcolor;
   text-align: center;
-  &__create {
-    position: absolute;
-    right: 0.18rem;
-    float: right;
-    a {
-      color: #333;
-    }
-  }
 }
 .address {
   margin: 0.16rem 0.18rem 0 0.18rem;

@@ -77,6 +77,11 @@ const routes = [
     name: "addressEdit",
     component: () => import("../views/addressEdit/addressEdit.vue"),
   },
+  {
+    path: "/addressSelect",
+    name: "addressSelect",
+    component: () => import("../views/addressSelect/addressSelect.vue"),
+  },
 ];
 
 const router = createRouter({
