@@ -53,6 +53,7 @@ const useLoginEffect = (showToast) => {
         showToast("登录失败");
       }
     } catch (error) {
+      console.log(error);
       showToast("请求失败");
     }
   };
